@@ -9,6 +9,7 @@ export interface User {
   workerType?: "cashier" | "waiter" | "kitchen";
   branch?: string | { _id: string; name: string; code: string };
   loyaltyPoints?: number;
+  rider?: { vehicle?: string; isOnline?: boolean };
 }
 
 export interface DeliveryZone {
@@ -179,8 +180,15 @@ export interface Shift {
   notes?: string;
   reviewedAt?: string;
   reviewNote?: string;
+  cashier?: { _id: string; name: string; workerType?: string } | string;
 }
 
 export interface ShiftLive { sales: ShiftTotals; expected: ShiftTotals; ordersCount: number; totalSales: number }
 
 export interface AvailableRider { _id: string; name: string; phone: string; vehicle?: string; activeDeliveries: number }
+
+export interface CashOwed {
+  count: number;
+  expected: number;
+  orders: { _id: string; orderNumber: string; total: number; createdAt: string }[];
+}

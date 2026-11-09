@@ -34,6 +34,8 @@ export const admin = {
       const results = await Promise.all(roles.map((role) => request<{ users: StaffUser[] }>(`/users${qs({ role })}`)));
       return results.flatMap((r) => r.users).sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
     },
+    // For a branch manager the API returns only their own branch's workers and riders
+    listBranchStaff: async (): Promise<StaffUser[]> => (await request<{ users: StaffUser[] }>("/users")).users,
     create: (b: unknown) => request<{ user: User }>("/users", { method: "POST", body: b }),
     update: (id: string, b: unknown) => request<{ user: User }>(`/users/${id}`, { method: "PATCH", body: b }),
   },

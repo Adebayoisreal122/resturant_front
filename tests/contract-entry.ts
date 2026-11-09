@@ -6,3 +6,6 @@ export { staffApi } from "../src/lib/staffApi";
 export { normalizePhone } from "../src/lib/format";
 export { lagosToday } from "../src/lib/dates";
 export { api, tokens, ApiError, request } from "../src/lib/api";
+export { riderApi } from "../src/lib/riderApi";
+export * from "../src/lib/riderLogic";
+export { managerApi } from "../src/lib/managerApi";
