@@ -5,6 +5,7 @@ import InstallPromo from "@/components/InstallPromo";
 import { BranchList, PopularDishes } from "@/components/HomeSections";
 import { Container } from "@/components/ui";
 import { APP_NAME } from "@/lib/config";
+import Image from "next/image";
 
 const features = [
   { icon: Truck, title: "Fast delivery", text: "Hot food brought to your door by our own riders.", tone: "bg-secondary-100 text-secondary-700" },
@@ -22,33 +23,132 @@ const steps = [
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-600 to-accent-500 text-white">
-        <div className="absolute -left-16 -top-16 h-64 w-64 rounded-full bg-white/10" aria-hidden />
-        <div className="absolute -bottom-24 right-10 h-80 w-80 rounded-full bg-accent-500/30" aria-hidden />
-        <Container className="relative grid items-center gap-10 py-14 sm:py-20 md:grid-cols-[1.2fr_1fr]">
+
+<section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600 text-white">
+
+  {/* Animated background decorations */}
+<div className="hero-glow hero-glow-one" aria-hidden="true" />
+<div className="hero-glow hero-glow-two" aria-hidden="true" />
+
+<div
+  className="pointer-events-none absolute inset-0 z-0"
+  aria-hidden="true"
+  style={{
+    background:
+      "radial-gradient(circle at 70% 50%, rgba(255,255,255,0.10), transparent 45%)"
+  }}
+/>
+
+  <Container className="relative z-10 grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
+
+    {/* LEFT: Hero content */}
+    <div className="hero-content relative z-10">
+
+      <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-md">
+        <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+        Taking orders now
+      </span>
+
+      <h1 className="mt-6 max-w-xl text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
+        Hot Nigerian meals,
+        <span className="mt-2 block text-accent-300">
+          brought to you.
+        </span>
+      </h1>
+
+      <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/75">
+        Order from {APP_NAME} for delivery, pickup or dine-in.
+        Enjoy freshly prepared meals delivered straight to your door.
+      </p>
+
+      <div className="mt-8 flex flex-wrap items-center gap-4">
+
+        <Link
+          href="/menu"
+          className="group inline-flex items-center gap-3 rounded-full bg-accent-500 px-8 py-4 font-bold text-white shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:bg-accent-600"
+        >
+          Order now
+          <ArrowRight
+            size={19}
+            className="transition-transform group-hover:translate-x-1"
+          />
+        </Link>
+
+        <InstallButton variant="hero" />
+
+      </div>
+
+      <div className="mt-9 flex flex-wrap gap-6 text-sm text-white/70">
+        <span>✓ Freshly prepared</span>
+        <span>✓ Fast delivery</span>
+        <span>✓ Easy payment</span>
+      </div>
+
+    </div>
+
+    {/* RIGHT: Animated food image */}
+    <div className="relative mx-auto w-full max-w-lg">
+
+      {/* Background glowing circle */}
+     <div className="absolute inset-8 rounded-full bg-accent-500/30 blur-3xl animate-pulse" />
+
+      {/* Decorative circle */}
+      <div className="absolute inset-5 rounded-full border border-white/15" />
+
+      <div className="hero-food relative z-10 aspect-square">
+
+        <Image
+          src="/images/restaurant-hero.png"
+          alt="Delicious freshly prepared Nigerian food"
+          fill
+          priority
+          sizes="(max-width: 768px) 90vw, 45vw"
+          className="object-contain drop-shadow-2xl"
+        />
+
+      </div>
+
+      {/* Floating food badge */}
+      <div className="hero-badge absolute -left-2 top-12 z-20 rounded-2xl border border-white/20 bg-white/95 p-4 text-stone-900 shadow-2xl sm:-left-8">
+
+        <div className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-2xl">
+            🔥
+          </span>
+
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">
-              <span className="h-2 w-2 rounded-full bg-success-500" /> Taking orders now
-            </span>
-            <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">Hot Nigerian meals, brought to you.</h1>
-            <p className="mt-4 max-w-xl text-lg text-primary-100">Order from {APP_NAME} for delivery, pickup or dine-in. Pay online or when your food arrives.</p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link href="/menu" className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition hover:bg-accent-600 active:scale-95">
-                Order now <ArrowRight size={18} />
-              </Link>
-              <InstallButton variant="hero" />
-            </div>
+            <p className="font-bold">Fresh & Hot</p>
+            <p className="text-xs text-stone-500">
+              Made with love
+            </p>
           </div>
-          <div className="hidden gap-3 md:grid">
-            {features.slice(0, 3).map(({ icon: Icon, title, text, tone }) => (
-              <div key={title} className="flex items-center gap-4 rounded-2xl bg-white/95 p-4 text-stone-900 shadow-lg">
-                <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${tone}`}><Icon size={24} /></span>
-                <div><p className="font-bold">{title}</p><p className="text-sm text-stone-600">{text}</p></div>
-              </div>
-            ))}
+        </div>
+
+      </div>
+
+      {/* Floating delivery badge */}
+      <div className="hero-delivery absolute -bottom-2 right-0 z-20 rounded-2xl border border-white/20 bg-white/95 p-4 text-stone-900 shadow-2xl sm:-right-6">
+
+        <div className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-2xl">
+            🛵
+          </span>
+
+          <div>
+            <p className="font-bold">Fast Delivery</p>
+            <p className="text-xs text-stone-500">
+              Right to your doorstep
+            </p>
           </div>
-        </Container>
-      </section>
+        </div>
+
+      </div>
+
+    </div>
+
+  </Container>
+</section>
+
 
       <Container className="mt-10 md:hidden">
         <div className="grid grid-cols-2 gap-3">

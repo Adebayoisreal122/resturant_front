@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
 import Providers from "@/components/Providers";
 import PWARegister from "@/components/PWARegister";
 import { APP_NAME } from "@/lib/config";
+import "./globals.css";
+
 
 export const metadata: Metadata = {
   title: { default: `${APP_NAME} | Order food online`, template: `%s | ${APP_NAME}` },

@@ -73,3 +73,99 @@ body {
   #print-area, #print-area * { visibility: visible !important; }
   #print-area { position: absolute; left: 0; top: 0; width: 72mm; }
 }
+
+
+
+/* Hero glowing background */
+.hero-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: glowPulse 6s ease-in-out infinite alternate;
+}
+
+.hero-glow-one {
+  top: 10%;
+  right: 5%;
+  background: rgba(255, 150, 40, 0.25);
+}
+
+.hero-glow-two {
+  bottom: -15%;
+  left: 10%;
+  background: rgba(255, 255, 255, 0.12);
+  animation-delay: 2s;
+}
+
+/* Floating food image */
+.hero-food {
+  animation: foodFloat 5s ease-in-out infinite;
+}
+
+/* Floating information badges */
+.hero-badge {
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.hero-delivery {
+  animation: badgeFloat 4.5s ease-in-out infinite reverse;
+}
+
+/* Hero text entrance */
+.hero-content {
+  animation: heroEnter 1s ease-out both;
+}
+
+@keyframes foodFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.035);
+  }
+}
+
+@keyframes badgeFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glowPulse {
+  from {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-food,
+  .hero-badge,
+  .hero-delivery,
+  .hero-glow,
+  .hero-content {
+    animation: none !important;
+  }
+}
